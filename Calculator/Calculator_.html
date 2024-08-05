@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)file:///C:/Users/DELL/Desktop/Calculator.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Calculator</title>
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+      #calc {
+         width: 100%;
+         height: 100vh;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         background: linear-gradient(to right, #ff7e5f, #feb47b);
+      }
+      #content {
+         background: #fff;
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      }
+      #content form input {
+         border: 0;
+         outline: 0;
+         width: 60px;
+         height: 60px;
+         border-radius: 10px;
+         font-size: 20px;
+         margin: 10px;
+         cursor: pointer;
+         color: white;
+         transition: background-color 0.3s ease;
+      }
+      #backspace, #clear {
+         background-color: #e74c3c;
+      }
+      #clear:hover, #backspace:hover {
+         background-color: #c0392b;
+      }
+      #res {
+         padding: 20px;
+         width: calc(100% - 40px);
+         margin: 0 10px 20px 10px;
+         border-radius: 10px;
+         font-size: 25px;
+         background-color: #ecf0f1;
+         color: #2c3e50;
+      }
+      form #output {
+         display: flex;
+         justify-content: flex-end;
+         margin-bottom: 20px;
+      }
+      form #output input {
+         text-align: right;
+         flex: 1;
+         font-size: 25px;
+      }
+      .btn input {
+         background-color: #3498db;
+      }
+      .btn input:hover {
+         background-color: #2980b9;
+      }
+      .btn input.operator {
+         background-color: #9b59b6;
+      }
+      .btn input.operator:hover {
+         background-color: #8e44ad;
+      }
+   </style>
+</head>
+<body>
+   <div id="calc">
+      <div id="content">
+         <form>
+            <div id="output">
+               <input type="text" id="res" readonly="">
+            </div>
+            <div class="btn">
+               <input type="button" value="C" onclick="Clear()" id="clear">
+               <input type="button" value="←" onclick="Back()" id="backspace">
+               <input type="button" value="%" onclick="Solve(&#39;%&#39;)" class="operator">
+               <input type="button" value="/" onclick="Solve(&#39;/&#39;)" class="operator">
+               <br>
+               <input type="button" value="7" onclick="Solve(&#39;7&#39;)">
+               <input type="button" value="8" onclick="Solve(&#39;8&#39;)">
+               <input type="button" value="9" onclick="Solve(&#39;9&#39;)">
+               <input type="button" value="x" onclick="Solve(&#39;*&#39;)" class="operator">
+               <br>
+               <input type="button" value="4" onclick="Solve(&#39;4&#39;)">
+               <input type="button" value="5" onclick="Solve(&#39;5&#39;)">
+               <input type="button" value="6" onclick="Solve(&#39;6&#39;)">
+               <input type="button" value="-" onclick="Solve(&#39;-&#39;)" class="operator">
+               <br>
+               <input type="button" value="1" onclick="Solve(&#39;1&#39;)">
+               <input type="button" value="2" onclick="Solve(&#39;2&#39;)">
+               <input type="button" value="3" onclick="Solve(&#39;3&#39;)">
+               <input type="button" value="+" onclick="Solve(&#39;+&#39;)" class="operator">
+               <br>
+               <input type="button" value="00" onclick="Solve(&#39;00&#39;)">
+               <input type="button" value="0" onclick="Solve(&#39;0&#39;)">
+               <input type="button" value="." onclick="Solve(&#39;.&#39;)">
+               <input type="button" value="=" onclick="Result()" class="operator">
+            </div>
+         </form>
+      </div>
+   </div>
+   <script>
+      let res = document.getElementById('res');
+
+      function Clear() {
+         res.value = '';
+      }
+
+      function Back() {
+         res.value = res.value.slice(0, -1);
+      }
+
+      function Solve(value) {
+         res.value += value;
+      }
+
+      function Result() {
+         try {
+            res.value = eval(res.value.replace(/x/g, '*').replace(/÷/g, '/'));
+         } catch {
+            res.value = 'Error';
+         }
+      }
+   </script>
+
+
+</body></html>
